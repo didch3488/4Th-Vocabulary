@@ -1,5 +1,5 @@
 const PREFIX = 'sadie-voca-' + self.registration.scope + '-';
-const CACHE = PREFIX + 'mobile-v4';
+const CACHE = PREFIX + 'quiz-v5';
 const ASSETS = ['./', './index.html', './manifest.json', './icon192.png', './icon512.png'];
 self.addEventListener('install', event => event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting())));
 self.addEventListener('activate', event => event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE&&(k.startsWith(PREFIX)||k==='vocab-icon-v2-'+self.registration.scope)).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
